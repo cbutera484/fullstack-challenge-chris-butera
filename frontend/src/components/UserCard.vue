@@ -1,8 +1,8 @@
 <template>
   <div class="user-card">
     <h2>{{ user.name }}</h2>
-    <p>{{ user.weather.description }}</p>
-    <p>{{ user.weather.temp }}</p>
+    <p class="description">{{ user.weather.description }}</p>
+    <p class="temp">{{ user.weather.temp }}</p>
 
     <p>
       <img
@@ -25,8 +25,35 @@ defineProps({
 .user-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 0 2rem;
   margin: 8px 0;
   background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2,
+p {
+  width: 25%;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+p.desription {
+}
+
+p.temp {
+}
+/* normally I would set these as a configurable mixin for different devices for a larger app */
+@media (max-width: 767px) {
+  .user-card {
+    display: block;
+    text-align: center;
+  }
+  h2,
+  p {
+    width: 100%;
+  }
 }
 </style>
