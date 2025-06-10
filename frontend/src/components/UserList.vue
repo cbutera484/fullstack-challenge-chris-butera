@@ -44,4 +44,7 @@ ul {
   max-width: 1200px;
   margin: 0 auto;
 }
+li {
+  cursor: pointer;
+}
 </style>
