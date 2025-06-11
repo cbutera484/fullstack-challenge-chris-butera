@@ -32,11 +32,13 @@ function openModal(user) {
       <li v-if="users.length === 0">No users found.</li>
     </ul>
   </div>
-  <UserModal
-    v-if="isModalOpen"
-    :user="selectedUser"
-    @close="isModalOpen = false"
-  />
+  <transition name="fade">
+    <UserModal
+      v-if="isModalOpen"
+      :user="selectedUser"
+      @close="isModalOpen = false"
+    />
+  </transition>
 </template>
 
 <style scoped>
@@ -46,5 +48,14 @@ ul {
 }
 li {
   cursor: pointer;
+}
+/* Todo: make fade animation a little more fancy */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
