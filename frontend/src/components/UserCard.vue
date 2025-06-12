@@ -1,14 +1,15 @@
 <template>
   <div class="user-card">
     <h2>{{ user.name }}</h2>
-    <p class="description">{{ user.weather.description }}</p>
-    <p class="temp">{{ Math.round(user.weather.temp) }}°F</p>
-
-    <p>
+    <p class="icon">
       <img
         :src="`https://openweathermap.org/img/wn/${user.weather.icon}@2x.png`"
+        alt="Weather Icon"
       />
     </p>
+
+    <p class="temp">{{ Math.round(user.weather.temp) }}&#8457;</p>
+    <p class="description">{{ user.weather.description }}</p>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ defineProps({
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  display: block;
 }
 
 .user-card:hover {
@@ -41,25 +43,21 @@ defineProps({
 
 h2,
 p {
-  width: 25%;
-  padding: 0 1rem;
+  width: 100%;
   text-align: center;
 }
 
-p.desription {
-}
-
-p.temp {
-}
-/* normally I would set these as a configurable mixin for different devices for a larger app */
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   .user-card {
-    display: block;
+    display: flex;
     text-align: center;
   }
   h2,
   p {
-    width: 100%;
+    width: 25%;
+    padding: 0 1rem;
   }
 }
+
+/* normally I would set these as a configurable mixin for different devices for a larger app */
 </style>

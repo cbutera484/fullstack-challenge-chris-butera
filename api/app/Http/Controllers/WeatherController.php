@@ -27,6 +27,12 @@ class WeatherController extends Controller
                     'description' => $weather['weather'][0]['description'] ?? null,
                     'temp' => $weather['main']['temp'] ?? null,
                     'icon' => $weather['weather'][0]['icon'] ?? null,
+                    'feels_like' => $weather['main']['feels_like'] ?? null,
+                    'humidity' => $weather['main']['humidity'] ?? null,
+                    'pressure' => $weather['main']['pressure'] ?? null,
+                    'wind_speed' => $weather['wind']['speed'] ?? null,
+                    'temp_min' => $weather['main']['temp_min'] ?? null,
+                    'temp_max' => $weather['main']['temp_max'] ?? null,
                 ] : null,
             ];
         });
