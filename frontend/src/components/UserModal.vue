@@ -79,7 +79,7 @@ function close() {
 }
 .modal-content {
   background: #fff;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 8px;
   min-width: 320px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);

@@ -6,15 +6,28 @@ const users = ref(null);
 const selectedUser = ref(null);
 const isModalOpen = ref(false);
 
-async function fetchData() {
-  const url = "http://localhost/users";
-  users.value = await (await fetch(url)).json();
-}
-
 onMounted(() => {
   fetchData();
 });
+const error = ref(null);
 
+async function fetchData() {
+  const url = "http://localhost/users";
+  error.value = null;
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // 5s timeout
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeout);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    users.value = await response.json();
+  } catch (err) {
+    users.value = [];
+    error.value = err.message || "Failed to fetch users.";
+  }
+}
 function openModal(user) {
   selectedUser.value = user;
   isModalOpen.value = true;
@@ -30,6 +43,9 @@ function openModal(user) {
         <UserCard :user="user" @click="openModal(user)" />
       </li>
       <li v-if="users.length === 0">No users found.</li>
+      <li class="error" v-if="error">
+        Error: {{ error }}. Please refresh or try again later
+      </li>
     </ul>
   </div>
   <transition name="fade">
@@ -45,6 +61,11 @@ function openModal(user) {
 ul {
   max-width: 1200px;
   margin: 0 auto;
+}
+li.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* Todo: make fade animation a little more fancy */
