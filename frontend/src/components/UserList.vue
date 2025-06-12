@@ -35,6 +35,7 @@ function openModal(user) {
 </script>
 
 <template>
+  <!-- TODO: replace with actual loader -->
   <div v-if="!users">Loading Users...</div>
 
   <div v-if="users">
