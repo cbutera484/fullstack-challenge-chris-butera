@@ -46,9 +46,7 @@ ul {
   max-width: 1200px;
   margin: 0 auto;
 }
-li {
-  cursor: pointer;
-}
+
 /* Todo: make fade animation a little more fancy */
 .fade-enter-active,
 .fade-leave-active {

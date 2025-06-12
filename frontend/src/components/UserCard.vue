@@ -2,7 +2,7 @@
   <div class="user-card">
     <h2>{{ user.name }}</h2>
     <p class="description">{{ user.weather.description }}</p>
-    <p class="temp">{{ user.weather.temp }}</p>
+    <p class="temp">{{ Math.round(user.weather.temp) }}°F</p>
 
     <p>
       <img
@@ -31,6 +31,12 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2,
